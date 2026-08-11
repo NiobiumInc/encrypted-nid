@@ -3,7 +3,7 @@ name: compiler-tests
 on:
   pull_request:
   push:
-    branches: [main, add-compiler-tests-ci]  # TODO: drop add-compiler-tests-ci before merging — added to test the workflow via push before opening the PR
+    branches: [main]
   workflow_dispatch: {}
 
 permissions:
