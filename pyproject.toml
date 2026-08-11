@@ -1,0 +1,10 @@
+[project]
+name = "fhe-networkmonitor"
+version = "0.1.0"
+description = "FHE Network Intrusion Detection demonstrator over the niobium-client transport"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=1.20",
+    "matplotlib>=3.6",
+]

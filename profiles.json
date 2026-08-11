@@ -1,0 +1,30 @@
+{
+  "profiles": {
+    "full": {
+      "features": 50,
+      "model": "assets/models/Mirai_model_FULL.bin",
+      "norm": "assets/normalization/Mirai_norm.bin",
+      "data_source": "Mirai",
+      "data_file": "assets/datasets/Mirai_first_batch_32K.bin",
+      "batch_limit": 1,
+      "threshold": 15
+    },
+    "unit": {
+      "features": 50,
+      "data_source": "Unit",
+      "batch_limit": 2,
+      "warmup_skip": 25000,
+      "threshold": 15,
+      "cfar_threshold": 0.090723
+    },
+    "mirai": {
+      "features": 50,
+      "data_source": "Mirai",
+      "batch_limit": 21,
+      "warmup_skip": 60810,
+      "threshold": 1,
+      "cfar_threshold": 0.064365,
+      "accuracy_profile": true
+    }
+  }
+}

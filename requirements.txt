@@ -1,0 +1,5 @@
+# Python dependencies for the FHE Network Monitor harness + report tools.
+# The harness (run_submission.py) needs numpy; the report/plot scripts
+# (plot_fpga_results.py, plot_comparison.py, demo_report.py) need matplotlib.
+numpy>=1.20
+matplotlib>=3.6
