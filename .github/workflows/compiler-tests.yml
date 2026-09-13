@@ -16,7 +16,7 @@ concurrency:
 jobs:
   compiler-tests:
     name: Compiler tests (self-hosted, GCP)
-    runs-on: [self-hosted, gcp-ephemeral, n2-highmem-16]
+    runs-on: [self-hosted, gcp-ephemeral, n2-highmem-16, "run-${{ github.run_id }}"]
     timeout-minutes: 60          # OpenFHE cold build ~15 min + full record/replay round trip
     env:
       SDK: /mnt/niobium-sdk/sdk  # mounted read-only at boot
