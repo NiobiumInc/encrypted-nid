@@ -2,7 +2,7 @@ THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
 ============================================================
 
 Project: encrypted-nid
-Generated: 2026-08-08
+Generated: 2026-10-09
 Tool: SCANOSS (snippet detection with License dataset)
 Components: 2
 
@@ -25,6 +25,7 @@ COMPONENT ATTRIBUTIONS
   Source: https://github.com/ymirsky/kitsune-py
   PURL: pkg:github/ymirsky/kitsune-py
   Copyright:
+    Copyright 2017 Yisroel Mirsky
     Copyright 2018 Yisroel mirsky
   License: MIT
 
