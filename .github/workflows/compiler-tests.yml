@@ -170,7 +170,7 @@ jobs:
           if [ $rc -eq 0 ]; then
             echo "encrypted-nid E2E (full/FHE_SIM): PASS"
           else
-            echo "::error::encrypted-nid E2E FAILED (output suppressed; see private debug logs)"
+            echo "::error::encrypted-nid E2E FAILED (output suppressed by policy — reproduce locally)"
           fi
           exit $rc
 
@@ -183,21 +183,3 @@ jobs:
             for i in 1 2 3 4 5; do kill -0 "$pid" 2>/dev/null || break; sleep 1; done
             kill -0 "$pid" 2>/dev/null && kill -KILL "$pid" 2>/dev/null || true
           fi
-
-      - name: Upload suppressed logs to private bucket (on failure)
-        if: failure()
-        run: |
-          set +x
-          BUCKET="your-ci-debug-bucket"    # private, write-only for the runner SA
-          PREFIX="${{ github.repository }}/${{ github.run_id }}-${{ github.run_attempt }}"
-          TOKEN="$(curl -sf -H 'Metadata-Flavor: Google' \
-            'http://metadata/computeMetadata/v1/instance/service-accounts/default/token' \
-            | python3 -c 'import sys,json; print(json.load(sys.stdin)["access_token"])')"
-          for f in nid-replay.log fhetch_server.log; do
-            [ -f "$RUNNER_TEMP/$f" ] || continue
-            obj="$(python3 -c 'import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1], safe=""))' "$PREFIX/$f")"
-            curl -sf -X POST -H "Authorization: Bearer $TOKEN" -H 'Content-Type: text/plain' \
-              --data-binary @"$RUNNER_TEMP/$f" \
-              "https://storage.googleapis.com/upload/storage/v1/b/$BUCKET/o?uploadType=media&name=$obj" \
-              >/dev/null && echo "uploaded $f" || echo "upload failed: $f"
-          done
